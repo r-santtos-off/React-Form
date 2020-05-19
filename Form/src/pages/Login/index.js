@@ -1,19 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Index.css';
 
 function Login() {
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    console.log(email);
+    console.log(senha);
+  }
+
   return (
     <section id="form" className="container">
       <div className="container icon">L</div>
       
       <fieldset>
-        <form>
+        <form onSubmit={handleSubmit}>
           <input 
             className="foco" 
             type="email" 
             name="email" 
             id="email" 
-            placeholder="E-mail" 
+            placeholder="E-mail"
+            value={email}
+            onChange={event => setEmail(event.target.value)}
             required
           />
           <input 
@@ -21,7 +33,9 @@ function Login() {
             type="password" 
             name="senha" 
             id="senha" 
-            placeholder="Senha" 
+            placeholder="Senha"
+            value={senha}
+            onChange={event => setSenha(event.target.value)}
             required
           />
           <input className="btn-submit" type="submit" value="Sign In"/>
